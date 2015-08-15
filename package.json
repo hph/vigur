@@ -1,0 +1,21 @@
+{
+  "name": "vigur",
+  "version": "0.1.0",
+  "description": "A two dimensional vector library written in ES6",
+  "main": "src/vigur.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hph/vigur.js"
+  },
+  "author": "Haukur Páll Hallvarðsson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hph/vigur/issues"
+  },
+  "homepage": "https://github.com/hph/vigur",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-uglify": "^1.2.0"
+  }
+}
