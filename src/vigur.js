@@ -9,18 +9,31 @@
 
 class Vector {
   /**
-   * Class constructor.
+   * Class constructor. Takes either two numeric arguments or a single array or
+   * object with values for both axes.
    *
    * ### Example:
    *     new Vector(2, 3);
    *     // => Vector {x: 2, y: 3}
+   *     new Vector([2, 3]);
+   *     // => Vector {x: 2, y: 3}
+   *     new Vector({x: 2, y: 3});
+   *     // => Vector {x: 2, y: 3}
    *
-   * @param {Number} x Value of the x axis.
-   * @param {Number} y Value of the y axis.
+   * @param {Number|Array|Object} x Value of the x axis or array or object of both axes.
+   * @param {Number|undefined} y Value of the y axis or undefined.
    * @return {Vector} A new instance of Vector.
    */
   constructor (x, y) {
-    [this.x, this.y] = [x, y];
+    if (typeof x === 'number' && typeof y === 'number') {
+      [this.x, this.y] = [x, y];
+    } else if (Array.isArray(x) && x.length === 2 && y === undefined) {
+      [this.x, this.y] = x;
+    } else if (typeof x === 'object' && y === undefined) {
+      [this.x, this.y] = [x.x, x.y];
+    } else {
+      throw Error('Invalid instantiation');
+    }
   }
 
   /**
@@ -47,54 +60,6 @@ class Vector {
    */
   get length () {
     return this.magnitude;
-  }
-
-  /**
-   * Get the normalized vector without affecting the current instance.
-   *
-   * ### Example:
-   *     let vector = new Vector(2, 3);
-   *     vector.normalized;
-   *     // => Vector {x: 0.5547001962252291, y: 0.8320502943378437}
-   *     vector;
-   *     // => Vector {x: 2, y: 3}
-   *
-   * @return {Vector} A new instance of Vector.
-   */
-  get normalized () {
-    return this.clone().normalize();
-  }
-
-  /**
-   * Get the inverted vector without affecting the current instance.
-   *
-   * ### Example:
-   *     let vector = new Vector(2, 3)
-   *     vector.inverted;
-   *     // => Vector {x: -2, y: -3}
-   *     vector;
-   *     // => Vector {x: 2, y: 3}
-   *
-   * @return {Vector} A new instance of Vector.
-   */
-  get inverted () {
-    return this.clone().invert();
-  }
-
-  /**
-   * Get the the vector with rounded values.
-   *
-   * ### Example:
-   *     let vector = new Vector(2.3, 3.5);
-   *     vector.rounded;
-   *     // => Vector {x: 2, y: 4}
-   *     vector;
-   *     // => Vector {x: 2.3, y: 3.5}
-   *
-   * @return {Vector} A new instance of Vector.
-   */
-  get rounded () {
-    return this.clone().round();
   }
 
   /**
@@ -147,6 +112,54 @@ class Vector {
    */
   get direction () {
     return this.horizontalAngle;
+  }
+
+  /**
+   * Get the normalized vector without affecting the current instance.
+   *
+   * ### Example:
+   *     let vector = new Vector(2, 3);
+   *     vector.normalized;
+   *     // => Vector {x: 0.5547001962252291, y: 0.8320502943378437}
+   *     vector;
+   *     // => Vector {x: 2, y: 3}
+   *
+   * @return {Vector} A new instance of Vector.
+   */
+  get normalized () {
+    return this.clone().normalize();
+  }
+
+  /**
+   * Get the inverted vector without affecting the current instance.
+   *
+   * ### Example:
+   *     let vector = new Vector(2, 3)
+   *     vector.inverted;
+   *     // => Vector {x: -2, y: -3}
+   *     vector;
+   *     // => Vector {x: 2, y: 3}
+   *
+   * @return {Vector} A new instance of Vector.
+   */
+  get inverted () {
+    return this.clone().invert();
+  }
+
+  /**
+   * Get the the vector with rounded values.
+   *
+   * ### Example:
+   *     let vector = new Vector(2.3, 3.5);
+   *     vector.rounded;
+   *     // => Vector {x: 2, y: 4}
+   *     vector;
+   *     // => Vector {x: 2.3, y: 3.5}
+   *
+   * @return {Vector} A new instance of Vector.
+   */
+  get rounded () {
+    return this.clone().round();
   }
 
   /**
@@ -219,17 +232,42 @@ class Vector {
   }
 
   /**
-   * Check if the vector is equal to another vector.
+   * Convert the Vector instance to a string.
    *
    * ### Example:
-   *     new Vector(2, 3).isEqual(new Vector(2, 5));
-   *     // => false
+   *     new Vector(2, 3).toString();
+   *     // => Vector {x: 2, y: 3}
    *
-   * @param {Vector} other Another vector instance to compare.
-   * @return {Boolean}
+   * @return {String} The string representation of the vector.
    */
-  isEqual (other) {
-    return this.x === other.x && this.y === other.y;
+  toString () {
+    return `Vector {x: ${this.x}, y: ${this.y}}`;
+  }
+
+  /**
+   * Convert the Vector instance to an array.
+   *
+   * ### Example:
+   *     new Vector(2, 3).toArray();
+   *     // => [2, 3]
+   *
+   * @return {Array} The vector as an array.
+   */
+  toArray () {
+    return [this.x, this.y];
+  }
+
+  /**
+   * Convert the Vector instance to an object.
+   *
+   * ### Example:
+   *     new Vector(2, 3).toObject();
+   *     // => {x: 2, y: 3}
+   *
+   * @return {Object} The vector as an object.
+   */
+  toObject () {
+    return {x: this.x, y: this.y};
   }
 
   /**
@@ -345,6 +383,20 @@ class Vector {
   }
 
   /**
+   * Check if the vector is equal to another vector.
+   *
+   * ### Example:
+   *     new Vector(2, 3).isEqual(new Vector(2, 5));
+   *     // => false
+   *
+   * @param {Vector} other Another vector instance to compare.
+   * @return {Boolean}
+   */
+  isEqual (other) {
+    return this.x === other.x && this.y === other.y;
+  }
+
+  /**
    * The Euclidean distance of another vector.
    *
    * ### Example:
@@ -356,45 +408,6 @@ class Vector {
    */
   distance (other) {
     return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
-  }
-
-  /**
-   * Convert the Vector instance to a string.
-   *
-   * ### Example:
-   *     new Vector(2, 3).toString();
-   *     // => Vector {x: 2, y: 3}
-   *
-   * @return {String} The string representation of the vector.
-   */
-  toString () {
-    return `Vector {x: ${this.x}, y: ${this.y}}`;
-  }
-
-  /**
-   * Convert the Vector instance to an array.
-   *
-   * ### Example:
-   *     new Vector(2, 3).toArray();
-   *     // => [2, 3]
-   *
-   * @return {Array} The vector as an array.
-   */
-  toArray () {
-    return [this.x, this.y];
-  }
-
-  /**
-   * Convert the Vector instance to an object.
-   *
-   * ### Example:
-   *     new Vector(2, 3).toObject();
-   *     // => {x: 2, y: 3}
-   *
-   * @return {Object} The vector as an object.
-   */
-  toObject () {
-    return {x: this.x, y: this.y};
   }
 
   /**

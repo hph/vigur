@@ -17,7 +17,6 @@ vector                         //=> Vector {x: 2, y: 3}
   .multiply(3)                 //=> Vector {x: 6, y: 9} 
   .multiply(new Vector(1, 3)); //=> Vector {x: 6, y: 27}
 
-
 // Operations that return vectors are chainable
 new Vector(2, 3)               // => Vector {x: 2, y: 3}
   .add(new Vector(2, 5))       // => Vector {x: 4, y: 8}
