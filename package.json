@@ -2,7 +2,7 @@
   "name": "vigur",
   "version": "0.1.0",
   "description": "A two dimensional vector library written in ES6",
-  "main": "src/vigur.js",
+  "main": "dist/vigur.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/hph/vigur.js"

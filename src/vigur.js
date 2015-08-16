@@ -438,3 +438,8 @@ class Vector {
     return radians / Math.PI * 180;
   }
 }
+
+// Expose Vector as a Node.js module.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = Vector;
+}
