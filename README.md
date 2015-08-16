@@ -32,4 +32,6 @@ Vector.radiansToDegrees(Math.PI);
 // => 180
 ```
 Check the [source](https://github.com/hph/vigur/blob/master/src/vigur.js) for a
-full list of available methods and documentation about them.
+full list of available methods and documentation about them. The
+[tests](https://github.com/hph/vigur/blob/master/test/vigur.js) are also a good
+resource.
