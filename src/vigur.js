@@ -233,62 +233,86 @@ class Vector {
   }
 
   /**
-   * Add vector together with another vector.
+   * Add a value or another vector to the vector.
    *
-   * ### Example:
+   * ### Example
+   *     new Vector(2, 3).add(2);
+   *     // => Vector {x: 4, y: 5}
    *     new Vector(2, 3).add(new Vector(2, 5));
    *     // => Vector {x: 4, y: 8}
    *
-   * @param {Vector} other Another vector instance to add with.
+   * @param {Number|Vector} value The value or vector to add.
    * @return {Vector} The vector instance.
    */
-  add (other) {
-    [this.x, this.y] = [this.x + other.x, this.y + other.y];
+  add (value) {
+    if (value instanceof Vector) {
+      [this.x, this.y] = [this.x + value.x, this.y + value.y];
+    } else {
+      [this.x, this.y] = [this.x + value, this.y + value];
+    }
     return this;
   }
 
   /**
-   * Subtract another vector from the vector.
+   * Subtract a value or another vector from the vector.
    *
    * ### Example:
+   *     new Vector(2, 3).subtract(2);
+   *     // => Vector {x: 0, y: 1}
    *     new Vector(2, 3).subtract(new Vector(2, 5));
    *     // => Vector {x: 0, y: -2}
    *
-   * @param {Vector} other Another vector with which to subtract.
+   * @param {Number|Vector} value The value or vector to add.
    * @return {Vector} The vector instance.
    */
-  subtract (other) {
-    [this.x, this.y] = [this.x - other.x, this.y - other.y];
+  subtract (value) {
+    if (value instanceof Vector) {
+      [this.x, this.y] = [this.x - value.x, this.y - value.y];
+    } else {
+      [this.x, this.y] = [this.x - value, this.y - value];
+    }
     return this;
   }
 
   /**
-   * Multiply vector with another vector.
+   * Multiply the vector with a value or another vector.
    *
    * ### Example:
+   *     new Vector(2, 3).multiply(2);
+   *     // => Vector {x: 4, y: 6}
    *     new Vector(2, 3).multiply(new Vector(2, 5));
    *     // => Vector {x: 4, y: 15}
    *
-   * @param {Vector} other Another vector with which to multiply.
+   * @param {Number|Vector} value The value or vector with which to multiply.
    * @return {Vector} The vector instance.
    */
-  multiply (other) {
-    [this.x, this.y] = [this.x * other.x, this.y * other.y];
+  multiply (value) {
+    if (value instanceof Vector) {
+      [this.x, this.y] = [this.x * value.x, this.y * value.y];
+    } else {
+      [this.x, this.y] = [this.x * value, this.y * value];
+    }
     return this;
   }
 
   /**
-   * Divide with another vector.
+   * Divide the vector with a value or another vector.
    *
    * ### Example:
+   *     new Vector(2, 3).divide(2);
+   *     // => Vector {x: 1, y: 0.5}
    *     new Vector(2, 3).divide(new Vector(2, 5));
    *     // => Vector {x: 1, y: 0.6}
    *
-   * @param {Vector} other Another vector with which to divide.
+   * @param {Number|Vector} value The value or vector with which to divide.
    * @return {Vector} The vector instance.
    */
-  divide (other) {
-    [this.x, this.y] = [this.x / other.x, this.y / other.y];
+  divide (value) {
+    if (value instanceof Vector) {
+      [this.x, this.y] = [this.x / value.x, this.y / value.y];
+    } else {
+      [this.x, this.y] = [this.x / value, this.y / value];
+    }
     return this;
   }
 
@@ -327,6 +351,7 @@ class Vector {
    *     new Vector(2, 3).distance(new Vector(2, 5));
    *     // => 2
    *
+   * @param {Vector} other The other vector with which to calculate.
    * @return {Number} The distance between the two vectors.
    */
   distance (other) {
@@ -351,7 +376,7 @@ class Vector {
    *
    * ### Example:
    *     new Vector(2, 3).toArray();
-   *     // => [2, 3];
+   *     // => [2, 3]
    *
    * @return {Array} The vector as an array.
    */
@@ -364,12 +389,12 @@ class Vector {
    *
    * ### Example:
    *     new Vector(2, 3).toObject();
-   *     // => { x: 2, y: 3 };
+   *     // => {x: 2, y: 3}
    *
    * @return {Object} The vector as an object.
    */
   toObject () {
-    return { x: this.x, y: this.y };
+    return {x: this.x, y: this.y};
   }
 
   /**
