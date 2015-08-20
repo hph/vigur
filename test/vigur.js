@@ -211,6 +211,14 @@ describe('instance methods that take arguments', function () {
     });
   });
 
+  describe('Vector#rotate', function () {
+    it('should rotate the vector by the given radians', function () {
+      vector = new Vector(1, 0);
+      var result = new Vector(0, 1);
+      expect(vector.rotate(Math.PI / 2).rounded.isEqual(result)).to.be.true;
+    });
+  });
+
   describe('Vector#dot', function () {
     it('should return the dot product of the vector with another vector', function () {
       expect(vector.dot(other)).to.equal(10);

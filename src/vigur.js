@@ -355,6 +355,22 @@ class Vector {
   }
 
   /**
+   * Rotate the vector by an angle.
+   *
+   * ### Example:
+   *     new Vector(1, 0).rotate(Math.PI / 2).rounded;
+   *     // => Vector {x: 0, y: 1}
+   *
+   * @param {Number} angle The angle in radians.
+   * @return {Vector} The vector instance.
+   */
+  rotate (angle) {
+    [this.x, this.y] = [this.x * Math.cos(angle) - this.y * Math.sin(angle),
+                        this.x * Math.sin(angle) + this.y * Math.cos(angle)];
+    return this;
+  }
+
+  /**
    * The dot product with another vector.
    *
    * ### Example:
