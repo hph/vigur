@@ -16,7 +16,7 @@ To use Vigur on the front end via bower, install it with `bower install vigur`
 and add the script to your template:
 
 ```html
-<script src="./bower_components/vigur/dist/vigur.js"></script>
+<script src="./bower_components/vigur/dist/vigur.min.js"></script>
 <script>
   var myVector = new Vector(2, 3);
 </script>
