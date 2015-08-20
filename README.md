@@ -32,10 +32,12 @@ vector.magnitude;  // => 3.605551275463989
 vector.normalized; // => Vector {x: 0.5547001962252291, y: 0.8320502943378437}
 vector.direction;  // => 0.982793723247329
 
-// Some methods accept both values and other vectors
-vector                         //=> Vector {x: 2, y: 3}
-  .multiply(3)                 //=> Vector {x: 6, y: 9} 
-  .multiply(new Vector(1, 3)); //=> Vector {x: 6, y: 27}
+// Some methods accept both values and vectors as params; some take none
+vector                        // => Vector {x: 2, y: 3}
+  .multiply(3)                // => Vector {x: 6, y: 9}
+  .multiply(new Vector(1, 3)) // => Vector {x: 6, y: 27}
+  .rotate(Math.PI / 2)        // => Vector {x: -27, y: 6.000000000000002}
+  .rounded;                   // => Vector {x: -27, y: 6}
 
 // Operations that return vectors are chainable
 new Vector(2, 3)               // => Vector {x: 2, y: 3}
