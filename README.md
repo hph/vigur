@@ -1,7 +1,8 @@
 # Vigur [![Build Status](https://travis-ci.org/hph/vigur.svg?branch=master)](https://travis-ci.org/hph/vigur)
 
 A two-dimensional vector library written with clarity and ease of use in mind.
-Leverages on new ES6 features and syntax and has 100% test coverage.
+Leverages on new ES6 features and syntax and has a 100% test coverage.
+Vigur is Icelandic for vector.
 
 ### Setup & usage
 To use Vigur on Node.js, install it with `npm install vigur` and start playing
